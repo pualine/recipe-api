@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { addRecipe, deleteRecipe, getAllRecipes, getSingleRecipe, updateRecipe } from "../controllers/recipes.controller.js";
 
 
 
@@ -9,21 +10,16 @@ const uri = process.env.MONGO_URI;
 
 
 // Define routes
-router.post('/', (req, res) =>{
-    res.send('Add recipes');
-});
+router.post('/', addRecipe);
+
+// Get All recipes
+router.get('/', getAllRecipes);
 
 // single recipe
-router.get('/:id', (req, res) =>{
-    res.send(`Single recipes:${req.params.id}`);
-});
+router.get('/:id', getSingleRecipe);
 
-router.delete('/:id', (req, res) =>{
-    res.send(`Delete one:${req.params.id}`);
-});
+router.delete('/:id', deleteRecipe );
 
-router.patch('/:id', (req, res) =>{
-    res.send(`Update one:${req.params.id}`);
-});
+router.patch('/:id', updateRecipe );
 
 export default router;
