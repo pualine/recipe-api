@@ -1,9 +1,11 @@
 import { RecipeModel } from "../models/recipe.js";
 
+
 // Add reccipe
 export const addRecipe = async (req, res, next) => {
   try {
-    const createDatabase = await RecipeModel.create(req.body);
+    const createDatabase = await RecipeModel.create({...req.body,
+    image: req.file.filename});
     res.status(201).json(createDatabase);
   } catch (error) {
     next(error);

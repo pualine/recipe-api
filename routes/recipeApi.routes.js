@@ -1,16 +1,18 @@
 import { Router } from "express";
 import { addRecipe, deleteRecipe, getAllRecipes, getSingleRecipe, updateRecipe } from "../controllers/recipes.controller.js";
+import multer from "multer";
 
 
+// create multer upload middleware
+const  upload = multer({dest:  'uploads/images'});
 
-
-// initialize router
+// create recipe router
 const router = Router()
 const uri = process.env.MONGO_URI;
 
 
 // Define routes
-router.post('/', addRecipe);
+router.post('/', upload.single("image"), addRecipe);
 
 // Get All recipes
 router.get('/', getAllRecipes);
