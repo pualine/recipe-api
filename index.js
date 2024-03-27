@@ -24,6 +24,7 @@ await mongoose.connect(process.env.MONGO_URI)
 
 
 // listen to port
-app.listen(4000, ()=> {
-    console.log('App is running successfully!');
+const port = process.env.PORT || 4000;
+app.listen(port, ()=> {
+    console.log(`App is running on ${port} successfully!`);
 });
